@@ -247,8 +247,9 @@ body {
 
 /* Dashboard Grid */
 .dashboard-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
     margin-bottom: 2.5rem;
 }
@@ -262,6 +263,8 @@ body {
 
 /* Map Card */
 .map-card {
+    width: 100%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -428,6 +431,8 @@ body {
 
 /* Sidebar Columns */
 .sidebar-column {
+    width: 100%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
