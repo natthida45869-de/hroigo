@@ -222,8 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (svgMap && mapWrapper && zoomInBtn && zoomOutBtn && zoomResetBtn) {
         // Base viewBox parameters
-        const baseMinX = -270;
-        const baseMinY = -120;
+        const baseMinX = -216.72774798178878;
+        const baseMinY = 262.6109998289435;
         const baseWidth = 740;
         const baseHeight = 1140;
 
