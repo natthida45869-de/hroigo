@@ -310,8 +310,8 @@ body {
     position: relative;
     width: 100%;
     max-width: 500px; 
-    height: 620px;    
-    margin: 0 auto; /* จัดแผนที่ให้อยู่ตรงกลางการ์ดสีขาว */
+    height: 550px;    
+    margin: 1rem auto 0 auto; /* จัดแผนที่ให้อยู่ตรงกลางแนวตั้งและแนวนอน */
     display: flex;
     justify-content: center;
     align-items: center;
