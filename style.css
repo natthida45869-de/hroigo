@@ -353,7 +353,7 @@ body {
     position: absolute;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 32px; /* เพิ่มระยะห่างชื่อจังหวัดออกจากหมุดจาก 8px เป็น 32px */
     transform: translate(-12px, -12px); /* Centered around pin-dot left edge */
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 5;
@@ -401,6 +401,7 @@ body {
 
 /* กล่องข้อความชื่อจังหวัด */
 .pin-name {
+    position: relative; /* ให้ระบุพิกัดเส้นเชื่อม ::before เทียบกับกล่องได้ */
     background-color: var(--white);
     padding: 0.45rem 0.8rem;
     border-radius: 8px;
@@ -410,6 +411,29 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     white-space: nowrap;
     border: 1px solid var(--border-color);
+}
+
+/* เส้นโยงเชื่อมต่อระหว่างหมุดกับชื่อจังหวัด */
+.pin-name::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 24px; /* ความยาวเส้นเชื่อมข้ามช่องว่าง Gap */
+    background-color: #cbd5e1; /* สีเทาขอบสวยงามกลมกลืน */
+    transform: translateY(-50%);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+/* สำหรับพินปกติ: เส้นโยงไปทางซ้ายหาตัวหมุด */
+.map-pin:not(.pin-east) .pin-name::before {
+    left: -28px;
+}
+
+/* สำหรับพินฝั่งตะวันออก (pin-east): เส้นโยงไปทางขวาหาตัวหมุด */
+.map-pin.pin-east .pin-name::before {
+    right: -28px;
 }
 
 /* 🟢 สถานะ: Visited (ไปแล้ว) */
