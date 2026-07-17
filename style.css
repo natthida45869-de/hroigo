@@ -315,6 +315,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* ป้องกันเนื้อหาแผนที่ล้นออกนอกกรอบ */
+    border-radius: 8px; /* เพิ่มขอบโค้งมนให้สวยงาม */
 }
 
 /* ==========================================================================
