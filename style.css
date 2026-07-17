@@ -781,3 +781,26 @@ footer {
 .zoom-btn:active {
     transform: scale(0.95);
 }
+
+/* Zoom Button Active Toggle State */
+.zoom-btn.active {
+    background: var(--primary-teal);
+    color: var(--white);
+    border-color: var(--primary-teal);
+}
+
+.zoom-btn.active:hover {
+    background: var(--dark-teal);
+    color: var(--white);
+}
+
+/* Hide Pins Smooth Transition */
+.custom-southern-map.pins-hidden .map-pin {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-12px, -12px) scale(0);
+}
+
+.custom-southern-map.pins-hidden .map-pin.pin-east {
+    transform: translate(calc(-100% + 12px), -12px) scale(0);
+}

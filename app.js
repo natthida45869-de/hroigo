@@ -280,6 +280,15 @@ document.addEventListener('DOMContentLoaded', () => {
             updateViewBox();
         });
 
+        // --- Toggle Pins Logic ---
+        const togglePinsBtn = document.getElementById('toggle-pins');
+        if (togglePinsBtn) {
+            togglePinsBtn.addEventListener('click', () => {
+                svgMap.classList.toggle('pins-hidden');
+                togglePinsBtn.classList.toggle('active');
+            });
+        }
+
         // --- Pan / Drag Logic ---
         let isDragging = false;
         let startX = 0;
