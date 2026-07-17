@@ -82,5 +82,147 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('🎉 ยินดีด้วย! คุณทำการเช็กอินที่ พังงา เรียบร้อยแล้ว ได้รับแสตมป์ใหม่เรียบร้อย!');
         });
     }
-    
+
+    // ==========================================================================
+    // 3. ระบบเอฟเฟกต์ฝนตกสามมิติในพื้นหลัง (Premium 3D Parallax Rain Animation)
+    // ==========================================================================
+    const canvas = document.createElement('canvas');
+    canvas.id = 'rain-canvas';
+    document.body.appendChild(canvas);
+
+    const rainStyle = document.createElement('style');
+    rainStyle.textContent = `
+        #rain-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+    `;
+    document.head.appendChild(rainStyle);
+
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    const raindrops = [];
+    const raindropCount = 120;
+    const splashes = [];
+
+    class Splash {
+        constructor(x, y, speedY) {
+            this.x = x;
+            this.y = y;
+            this.vx = Math.random() * 3 - 1.5;
+            this.vy = -Math.random() * speedY * 0.25 - 1;
+            this.life = 1.0;
+            this.decay = Math.random() * 0.08 + 0.05;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += 0.2; // Gravity
+            this.life -= this.decay;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${this.life * 0.35})`;
+            ctx.lineWidth = 0.8;
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x + this.vx * 0.5, this.y + this.vy * 0.5);
+            ctx.stroke();
+        }
+    }
+
+    class Raindrop {
+        constructor() {
+            this.reset(true);
+        }
+
+        reset(initial = false) {
+            this.x = Math.random() * width;
+            this.y = initial ? Math.random() * height : -35;
+            this.depth = Math.floor(Math.random() * 3);
+            
+            if (this.depth === 0) { // Background
+                this.length = Math.random() * 8 + 6;
+                this.speed = Math.random() * 3 + 4;
+                this.opacity = Math.random() * 0.08 + 0.04;
+                this.lineWidth = 0.5;
+            } else if (this.depth === 1) { // Midground
+                this.length = Math.random() * 16 + 10;
+                this.speed = Math.random() * 5 + 8;
+                this.opacity = Math.random() * 0.15 + 0.08;
+                this.lineWidth = 1.0;
+            } else { // Foreground
+                this.length = Math.random() * 24 + 16;
+                this.speed = Math.random() * 7 + 13;
+                this.opacity = Math.random() * 0.22 + 0.12;
+                this.lineWidth = 1.5;
+            }
+            this.wind = -1.2; // Gentle breeze to the left
+        }
+
+        update() {
+            this.y += this.speed;
+            this.x += this.wind;
+            
+            if (this.y > height) {
+                if (!initial && this.depth > 0 && splashes.length < 40) {
+                    splashes.push(new Splash(this.x, height - 2, this.speed));
+                }
+                this.reset(false);
+            } else if (this.x < -20 || this.x > width + 20) {
+                this.reset(false);
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
+            ctx.lineWidth = this.lineWidth;
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x + this.wind * 0.6, this.y + this.length);
+            ctx.stroke();
+        }
+    }
+
+    for (let i = 0; i < raindropCount; i++) {
+        raindrops.push(new Raindrop());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Render rain
+        raindrops.forEach(drop => {
+            drop.update();
+            drop.draw();
+        });
+
+        // Update and render splashes
+        for (let i = splashes.length - 1; i >= 0; i--) {
+            const s = splashes[i];
+            s.update();
+            if (s.life <= 0) {
+                splashes.splice(i, 1);
+            } else {
+                s.draw();
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 });
