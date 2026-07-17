@@ -438,14 +438,14 @@ body {
 
 /* ย้ายเฉพาะป้ายชื่อกระบี่ลงด้านล่าง เพื่อหลีกเลี่ยงการทับซ้อนกับหมุดและป้ายภูเก็ต */
 .map-pin.krabi-pin .pin-name {
-    transform: translateY(24px) translateX(8px); /* ขยับลงล่าง 24px และเขยิบขวา 8px ให้ใกล้หมุดขึ้น */
+    transform: translateY(36px) translateX(14px); /* ขยับเยื้องลงล่างและเขยิบขวาหลบป้ายภูเก็ต */
 }
 
-/* ปรับทิศทางและมุมของเส้นโยงกระบี่ให้เป็นแนวเฉียงขึ้นหาตัวหมุด */
+/* ปรับทิศทางและเพิ่มความยาวของเส้นโยงกระบี่เฉียงขึ้นหาตัวหมุด */
 .map-pin.krabi-pin .pin-name::before {
-    width: 24px;
-    right: -22px;
-    transform: rotate(-43deg);
+    width: 38px; /* เพิ่มความยาวของเส้นเชื่อมข้ามแนวเฉียง */
+    right: -36px;
+    transform: rotate(-63.4deg); /* หมุนทำมุมชันขึ้นตามสัดส่วนการเยื้อง */
     transform-origin: left center;
 }
 
