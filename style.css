@@ -286,13 +286,16 @@ body {
 }
 
 .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50% 50% 50% 0;
+    display: inline-block;
+    transform: rotate(-45deg);
+    flex-shrink: 0;
 }
 
-.dot.visited { background-color: #a0aec0; }
-.dot.remaining { background-color: #cbd5e0; }
+.dot.visited { background-color: #38a169; }
+.dot.remaining { background-color: #a0aec0; }
 
 /* ==========================================================================
    Interactive Southern Thailand Map (เวอร์ชันใช้รูปภาพจริงของคุณ)
@@ -334,13 +337,27 @@ body {
     z-index: 10;
 }
 
-/* จุดศูนย์กลางพิน (Dot Indicator) */
+/* จุดศูนย์กลางพิน (Dot Indicator - เปลี่ยนเป็นรูปหมุด) */
 .pin-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50% 50% 50% 0;
     display: inline-block;
     flex-shrink: 0;
+    transform: rotate(-45deg);
+    position: relative;
+}
+
+.pin-dot::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background: var(--white);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* กล่องข้อความชื่อจังหวัด */
@@ -359,7 +376,7 @@ body {
 /* 🟢 สถานะ: Visited (ไปแล้ว) */
 .map-pin.visited .pin-dot {
     background-color: #38a169;
-    box-shadow: 0 0 0 4px rgba(56, 161, 105, 0.25), 0 0 8px rgba(56, 161, 105, 0.6);
+    box-shadow: -1px 2px 4px rgba(56, 161, 105, 0.4);
 }
 .map-pin.visited .pin-name {
     border-left: 3px solid #38a169;
@@ -372,7 +389,7 @@ body {
 /* ⚪ สถานะ: Remaining (ยังไม่ไป) */
 .map-pin.remaining .pin-dot {
     background-color: #a0aec0;
-    box-shadow: 0 0 0 4px rgba(160, 174, 192, 0.25);
+    box-shadow: -1px 2px 4px rgba(160, 174, 192, 0.4);
 }
 .map-pin.remaining .pin-name {
     border-left: 3px solid #a0aec0;
