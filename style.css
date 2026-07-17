@@ -351,6 +351,7 @@ body {
     transform: translate(-12px, -12px); /* Centered around pin-dot left edge */
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 5;
+    pointer-events: auto; /* รับการกดและชี้พินจังหวัดในกรอบ SVG */
 }
 
 /* พลิกให้กล่องข้อความอยู่ทางซ้าย สำหรับจังหวัดฝั่งตะวันออกเพื่อไม่ให้หลุดขอบรูป */
