@@ -247,9 +247,8 @@ body {
 
 /* Dashboard Grid */
 .dashboard-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     gap: 1.5rem;
     margin-bottom: 2.5rem;
 }
@@ -263,8 +262,6 @@ body {
 
 /* Map Card */
 .map-card {
-    width: 100%;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -315,14 +312,17 @@ body {
     max-width: 500px; 
     height: 620px;    
     margin: 0 auto; /* จัดแผนที่ให้อยู่ตรงกลางการ์ดสีขาว */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ==========================================================================
    Custom SVG Vector Map Styles
    ========================================================================== */
 .custom-southern-map {
-    width: 100%;
     height: 100%;
+    width: auto;
     display: block;
     overflow: visible;
 }
@@ -431,8 +431,6 @@ body {
 
 /* Sidebar Columns */
 .sidebar-column {
-    width: 100%;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
