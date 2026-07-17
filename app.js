@@ -86,23 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // 3. ระบบเอฟเฟกต์ฝนตกสามมิติในพื้นหลัง (Premium 3D Parallax Rain Animation)
     // ==========================================================================
-    const canvas = document.createElement('canvas');
-    canvas.id = 'rain-canvas';
-    document.body.appendChild(canvas);
-
-    const rainStyle = document.createElement('style');
-    rainStyle.textContent = `
-        #rain-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-    `;
-    document.head.appendChild(rainStyle);
+    const canvas = document.getElementById('rain-canvas');
+    if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;

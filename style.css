@@ -694,6 +694,16 @@ footer {
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+#rain-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .btn-register-pill:hover {
     background-color: var(--dark-teal); /* ใช้ตัวแปรสีเขียวเข้มเดิมของคุณเมื่อ hover */
 }
