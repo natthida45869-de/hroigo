@@ -242,6 +242,9 @@ document.addEventListener('DOMContentLoaded', () => {
             svgMap.setAttribute('viewBox', `${curMinX} ${curMinY} ${curWidth} ${curHeight}`);
         }
 
+        // Initialize and center immediately on script load
+        updateViewBox();
+
         // --- Zoom Logic ---
         function zoom(direction) {
             const oldWidth = baseWidth * currentScale;

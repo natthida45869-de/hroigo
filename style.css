@@ -324,8 +324,8 @@ body {
    Custom SVG Vector Map Styles
    ========================================================================== */
 .custom-southern-map {
+    width: 100%;
     height: 100%;
-    width: auto;
     display: block;
     overflow: visible;
 }
