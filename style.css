@@ -729,3 +729,45 @@ footer {
 .btn-register-pill:hover {
     background-color: var(--dark-teal); /* ใช้ตัวแปรสีเขียวเข้มเดิมของคุณเมื่อ hover */
 }
+
+/* ==========================================================================
+   Map Zoom Controls Styles
+   ========================================================================== */
+.map-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 15;
+}
+
+.zoom-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.zoom-btn:hover {
+    background: var(--white);
+    color: var(--primary-teal);
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}

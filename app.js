@@ -210,4 +210,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     animate();
+
+    // ==========================================================================
+    // 4. ระบบควบคุมการซูมแผนที่เวกเตอร์ (SVG Map Zoom Controls)
+    // ==========================================================================
+    const svgMap = document.querySelector('.custom-southern-map');
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    const zoomResetBtn = document.getElementById('zoom-reset');
+
+    if (svgMap && zoomInBtn && zoomOutBtn && zoomResetBtn) {
+        // Base viewBox parameters
+        const baseMinX = -270;
+        const baseMinY = -120;
+        const baseWidth = 740;
+        const baseHeight = 1140;
+
+        let currentScale = 1.0;
+        const scaleStep = 0.15;
+        const minScale = 0.4;  // Max zoom in
+        const maxScale = 1.5;  // Max zoom out
+
+        function updateZoom() {
+            const newWidth = baseWidth * currentScale;
+            const newHeight = baseHeight * currentScale;
+            
+            // Keep the center of the viewBox constant
+            const centerX = baseMinX + baseWidth / 2;
+            const centerY = baseMinY + baseHeight / 2;
+            
+            const newMinX = centerX - newWidth / 2;
+            const newMinY = centerY - newHeight / 2;
+            
+            svgMap.setAttribute('viewBox', `${newMinX} ${newMinY} ${newWidth} ${newHeight}`);
+        }
+
+        zoomInBtn.addEventListener('click', () => {
+            if (currentScale > minScale) {
+                currentScale = Math.max(minScale, currentScale - scaleStep);
+                updateZoom();
+            }
+        });
+
+        zoomOutBtn.addEventListener('click', () => {
+            if (currentScale < maxScale) {
+                currentScale = Math.min(maxScale, currentScale + scaleStep);
+                updateZoom();
+            }
+        });
+
+        zoomResetBtn.addEventListener('click', () => {
+            currentScale = 1.0;
+            updateZoom();
+        });
+    }
 });
