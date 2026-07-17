@@ -212,14 +212,15 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
 
     // ==========================================================================
-    // 4. ระบบควบคุมการซูมแผนที่เวกเตอร์ (SVG Map Zoom Controls)
+    // 4. ระบบควบคุมการซูมและการเลื่อนแผนที่เวกเตอร์ (SVG Map Zoom & Pan Controls)
     // ==========================================================================
     const svgMap = document.querySelector('.custom-southern-map');
+    const mapWrapper = document.querySelector('.map-wrapper');
     const zoomInBtn = document.getElementById('zoom-in');
     const zoomOutBtn = document.getElementById('zoom-out');
     const zoomResetBtn = document.getElementById('zoom-reset');
 
-    if (svgMap && zoomInBtn && zoomOutBtn && zoomResetBtn) {
+    if (svgMap && mapWrapper && zoomInBtn && zoomOutBtn && zoomResetBtn) {
         // Base viewBox parameters
         const baseMinX = -270;
         const baseMinY = -120;
@@ -231,37 +232,105 @@ document.addEventListener('DOMContentLoaded', () => {
         const minScale = 0.4;  // Max zoom in
         const maxScale = 1.5;  // Max zoom out
 
-        function updateZoom() {
-            const newWidth = baseWidth * currentScale;
-            const newHeight = baseHeight * currentScale;
-            
-            // Keep the center of the viewBox constant
-            const centerX = baseMinX + baseWidth / 2;
-            const centerY = baseMinY + baseHeight / 2;
-            
-            const newMinX = centerX - newWidth / 2;
-            const newMinY = centerY - newHeight / 2;
-            
-            svgMap.setAttribute('viewBox', `${newMinX} ${newMinY} ${newWidth} ${newHeight}`);
+        // Current viewBox state (updates on zoom and pan)
+        let curMinX = baseMinX;
+        let curMinY = baseMinY;
+
+        function updateViewBox() {
+            const curWidth = baseWidth * currentScale;
+            const curHeight = baseHeight * currentScale;
+            svgMap.setAttribute('viewBox', `${curMinX} ${curMinY} ${curWidth} ${curHeight}`);
         }
 
-        zoomInBtn.addEventListener('click', () => {
-            if (currentScale > minScale) {
-                currentScale = Math.max(minScale, currentScale - scaleStep);
-                updateZoom();
-            }
-        });
+        // --- Zoom Logic ---
+        function zoom(direction) {
+            const oldWidth = baseWidth * currentScale;
+            const oldHeight = baseHeight * currentScale;
+            
+            // Calculate current center in viewBox space
+            const centerX = curMinX + oldWidth / 2;
+            const centerY = curMinY + oldHeight / 2;
 
-        zoomOutBtn.addEventListener('click', () => {
-            if (currentScale < maxScale) {
+            if (direction === 'in') {
+                currentScale = Math.max(minScale, currentScale - scaleStep);
+            } else {
                 currentScale = Math.min(maxScale, currentScale + scaleStep);
-                updateZoom();
             }
-        });
+
+            const newWidth = baseWidth * currentScale;
+            const newHeight = baseHeight * currentScale;
+
+            // Recalculate curMinX and curMinY to keep the center constant
+            curMinX = centerX - newWidth / 2;
+            curMinY = centerY - newHeight / 2;
+
+            updateViewBox();
+        }
+
+        zoomInBtn.addEventListener('click', () => zoom('in'));
+        zoomOutBtn.addEventListener('click', () => zoom('out'));
 
         zoomResetBtn.addEventListener('click', () => {
             currentScale = 1.0;
-            updateZoom();
+            curMinX = baseMinX;
+            curMinY = baseMinY;
+            updateViewBox();
+        });
+
+        // --- Pan / Drag Logic ---
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let startMinX = 0;
+        let startMinY = 0;
+
+        mapWrapper.addEventListener('mousedown', (e) => {
+            // Only drag if left click is used, and not clicking interactive buttons or pins
+            if (e.button !== 0 || e.target.closest('.map-controls') || e.target.closest('.map-pin')) return;
+            
+            isDragging = true;
+            mapWrapper.style.cursor = 'grabbing';
+            startX = e.clientX;
+            startY = e.clientY;
+            startMinX = curMinX;
+            startMinY = curMinY;
+            
+            // Prevent text selection during drag
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+
+            // Scale screen pixels to SVG viewBox units
+            const rect = svgMap.getBoundingClientRect();
+            const curWidth = baseWidth * currentScale;
+            const curHeight = baseHeight * currentScale;
+            
+            const scaleX = curWidth / rect.width;
+            const scaleY = curHeight / rect.height;
+
+            curMinX = startMinX - dx * scaleX;
+            curMinY = startMinY - dy * scaleY;
+
+            updateViewBox();
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                mapWrapper.style.cursor = 'grab';
+            }
+        });
+
+        mapWrapper.addEventListener('mouseleave', () => {
+            if (isDragging) {
+                isDragging = false;
+                mapWrapper.style.cursor = 'grab';
+            }
         });
     }
 });
