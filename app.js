@@ -222,15 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (svgMap && mapWrapper && zoomInBtn && zoomOutBtn && zoomResetBtn) {
         // Base viewBox parameters
-        const baseMinX = -216.72774798178878;
-        const baseMinY = 262.6109998289435;
-        const baseWidth = 740;
-        const baseHeight = 1140;
+        const baseMinX = 5.272252018211248;
+        const baseMinY = 604.6109998289435;
+        const baseWidth = 295.99999999999994;
+        const baseHeight = 455.9999999999999;
 
         let currentScale = 1.0;
         const scaleStep = 0.15;
-        const minScale = 0.15;  // Max zoom in (allows further zoom in)
-        const maxScale = 1.5;  // Max zoom out
+        const minScale = 0.3;  // Max zoom in
+        const maxScale = 2.5;  // Max zoom out
 
         // Current viewBox state (updates on zoom and pan)
         let curMinX = baseMinX;
