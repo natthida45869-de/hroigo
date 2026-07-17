@@ -436,6 +436,19 @@ body {
     right: -28px;
 }
 
+/* ย้ายเฉพาะป้ายชื่อกระบี่ลงด้านล่าง เพื่อหลีกเลี่ยงการทับซ้อนกับหมุดและป้ายภูเก็ต */
+.map-pin.krabi-pin .pin-name {
+    transform: translateY(24px) translateX(8px); /* ขยับลงล่าง 24px และเขยิบขวา 8px ให้ใกล้หมุดขึ้น */
+}
+
+/* ปรับทิศทางและมุมของเส้นโยงกระบี่ให้เป็นแนวเฉียงขึ้นหาตัวหมุด */
+.map-pin.krabi-pin .pin-name::before {
+    width: 24px;
+    right: -22px;
+    transform: rotate(-43deg);
+    transform-origin: left center;
+}
+
 /* 🟢 สถานะ: Visited (ไปแล้ว) */
 .map-pin.visited .pin-dot {
     background-color: #e53e3e;
