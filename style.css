@@ -1,0 +1,675 @@
+:root {
+    --primary-teal: #1e5f64;
+    --dark-teal: #133e41;
+    --light-bg: #f7f9f9;
+    --white: #ffffff;
+    --text-dark: #2d3748;
+    --text-gray: #718096;
+    --border-color: #e2e8f0;
+    --success-green: #38a169;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarabun', sans-serif;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-teal);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+.nav-links a.active {
+    color: var(--primary-teal);
+    border-bottom: 2px solid var(--primary-teal);
+    padding-bottom: 0.25rem;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.icon-btn {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Main Layout container */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   Welcome Banner ฉบับปรับปรุงร่วมกับระบบเลเยอร์สไลด์แบบละมุน (วางทับของเดิมได้เลย)
+   ========================================================================== */
+
+.welcome-banner {
+    background-color: var(--primary-teal); /* 🔥 เพิ่มบรรทัดนี้เพื่อเป็นสีสำรองระหว่างรูปภาพกำลังโหลด */
+    border-radius: 16px;
+    padding: 4.5rem 3.5rem; 
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    position: relative; 
+    min-height: 380px; 
+    margin-bottom: 2rem;
+    overflow: hidden; 
+}
+
+/* 🔥 [เพิ่มใหม่] แผ่นป้ายภาพพื้นหลังแต่ละเลเยอร์ */
+.banner-bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1; /* อยู่ชั้นล่างสุดภายในแบนเนอร์ */
+    opacity: 0; /* เริ่มต้นให้ซ่อนไว้ */
+    /* ใช้ cubic-bezier เพื่อความผ่อนหนักผ่อนเบาที่ละมุนกว่าการ fade ปกติ */
+    transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+/* เมื่อรูปภาพแผ่นนั้นถูกเลือกให้แสดง */
+.banner-bg-slide.active {
+    opacity: 1;
+}
+
+/* 🔥 [ปรับปรุง] ดันกลุ่มกล่องข้อความให้อยู่บนแผ่นภาพ (z-index: 2) */
+.banner-content {
+    position: relative;
+    z-index: 2; 
+}
+
+.banner-content h1 {
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.banner-content p {
+    font-size: 1.05rem;
+    opacity: 0.95;
+    margin-bottom: 2rem;
+    max-width: 550px; 
+    line-height: 1.5;
+}
+
+.banner-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-hero-start {
+    background-color: #046571; 
+    color: var(--white);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.btn-hero-start:hover {
+    background-color: #034b54;
+}
+
+.btn-hero-view {
+    background-color: rgba(64, 115, 140, 0.75); 
+    color: var(--white);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px); 
+}
+
+.btn-hero-view:hover {
+    background-color: rgba(64, 115, 140, 0.95);
+}
+
+/* จุดสไลด์มุมขวาล่าง (Carousel Dots) */
+.carousel-dots {
+    position: absolute;
+    bottom: 25px;
+    right: 35px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    z-index: 2; /* 🔥 [ปรับปรุง] ดันขึ้นมาเหนือแผ่นภาพเพื่อให้กดคลิกสลับรูปได้ */
+}
+
+.dot-item {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transition: all 0.25s ease;
+    cursor: pointer; /* รวมสไตล์รูปมือเมื่อชี้ไว้ตรงนี้เลย */
+}
+
+.dot-item.active {
+    width: 20px; 
+    border-radius: 4px;
+    background-color: var(--white);
+}
+/* SVG Progress Ring Styles */
+.progress-container {
+    text-align: center;
+}
+
+.progress-ring-box {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 0.5rem auto;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-text .percent {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.progress-text .level {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.progress-ring__circle {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.35s;
+}
+
+.progress-footer {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+/* Map Card */
+.map-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.map-legend {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.dot.visited { background-color: #a0aec0; }
+.dot.remaining { background-color: #cbd5e0; }
+
+/* ==========================================================================
+   Interactive Southern Thailand Map (เวอร์ชันใช้รูปภาพจริงของคุณ)
+   ========================================================================== */
+
+.map-wrapper {
+    /* 🛠️ ดึงรูปภาพที่คุณเซฟไว้มาใช้เป็นพื้นหลัง */
+    background-image: url('image/แผนที่.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    
+    /* บีบความกว้างและล็อกความสูงให้แมตช์กับสัดส่วนของรูปภาพต้นฉบับ */
+    width: 100%;
+    max-width: 500px; 
+    height: 620px;    
+    margin: 0 auto; /* จัดแผนที่ให้อยู่ตรงกลางการ์ดสีขาว */
+}
+
+/* ตัวคุมพินจังหวัด (จุดอยู่ซ้าย ข้อความอยู่ขวา) */
+.map-pin {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+}
+
+/* พลิกให้กล่องข้อความอยู่ทางซ้าย สำหรับจังหวัดฝั่งตะวันออกเพื่อไม่ให้หลุดขอบรูป */
+.map-pin.pin-east {
+    flex-direction: row-reverse;
+}
+
+.map-pin:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    z-index: 10;
+}
+
+/* จุดศูนย์กลางพิน (Dot Indicator) */
+.pin-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* กล่องข้อความชื่อจังหวัด */
+.pin-name {
+    background-color: var(--white);
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    border: 1px solid var(--border-color);
+}
+
+/* 🟢 สถานะ: Visited (ไปแล้ว) */
+.map-pin.visited .pin-dot {
+    background-color: #38a169;
+    box-shadow: 0 0 0 4px rgba(56, 161, 105, 0.25), 0 0 8px rgba(56, 161, 105, 0.6);
+}
+.map-pin.visited .pin-name {
+    border-left: 3px solid #38a169;
+}
+.map-pin.visited.pin-east .pin-name {
+    border-left: none;
+    border-right: 3px solid #38a169;
+}
+
+/* ⚪ สถานะ: Remaining (ยังไม่ไป) */
+.map-pin.remaining .pin-dot {
+    background-color: #a0aec0;
+    box-shadow: 0 0 0 4px rgba(160, 174, 192, 0.25);
+}
+.map-pin.remaining .pin-name {
+    border-left: 3px solid #a0aec0;
+    opacity: 0.95;
+}
+.map-pin.remaining.pin-east .pin-name {
+    border-left: none;
+    border-right: 3px solid #a0aec0;
+}
+
+/* Sidebar Columns */
+.sidebar-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Rank Card */
+.rank-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.badge-icon {
+    font-size: 2rem;
+    background: #f0fff4;
+    padding: 0.5rem;
+    border-radius: 12px;
+}
+
+.rank-header .label {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    font-weight: bold;
+}
+
+.rank-stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.stat-box {
+    flex: 1;
+    background-color: var(--light-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-box .stat-num {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-teal);
+}
+
+.stat-box .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+/* GPS Check-in Card */
+.checkin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.gps-badge {
+    background-color: #e6fffa;
+    color: #319795;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.checkin-note {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-align: center;
+    margin-top: 0.75rem;
+}
+
+/* Promo Card */
+.promo-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.promo-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.promo-text h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+.promo-text p {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+}
+
+.arrow {
+    margin-left: auto;
+    font-weight: bold;
+    color: var(--primary-teal);
+}
+
+/* Recent Activity Grid */
+.recent-activity {
+    margin-top: 3rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.view-all {
+    color: var(--primary-teal);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.activity-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.activity-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.stamp-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--white);
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+
+.activity-info {
+    padding: 1rem;
+}
+
+.activity-info h4 {
+    margin-bottom: 0.25rem;
+}
+
+.activity-info p {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+/* Footer Style */
+footer {
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 5%;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.footer-logo {
+    font-weight: bold;
+    color: var(--primary-teal);
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-gray);
+    margin-left: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+/* Responsive breakpoint */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .welcome-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    .progress-container {
+        align-self: center;
+    }
+}
+/* ==========================================================================
+   ส่วนเพิ่มใหม่: ปุ่มสำหรับการเข้าสู่ระบบ / สมัครสมาชิก และช่องค้นหาตามดีไซน์
+   ========================================================================== */
+
+.nav-auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* ระยะห่างระหว่างช่องค้นหาและปุ่มต่างๆ */
+}
+
+/* 1. สไตล์ช่องค้นหา (Search Bar) */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f5; /* สีเทาอ่อนมากๆ ตามภาพ */
+    padding: 0.55rem 1.2rem;
+    border-radius: 24px; /* ทำให้ขอบโค้งมนยาวสม่ำเสมอ */
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 0.6rem;
+}
+
+.search-container input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    width: 160px; /* ความกว้างของช่อง Input */
+    font-family: inherit;
+}
+
+.search-container input::placeholder {
+    color: #a0aec0; /* สีของ Text ตัวอย่างในช่องค้นหา */
+    opacity: 1;
+}
+
+/* 2. ปุ่ม Login (แบบข้อความธรรมดา) */
+.btn-login-text {
+    background: transparent;
+    border: none;
+    color: #4a5568; /* สีเทาเข้มแบบโมเดิร์น */
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.btn-login-text:hover {
+    color: var(--primary-teal); /* เปลี่ยนเป็นสีเขียวหัวเป็ดหลักของคุณเมื่อชี้ */
+}
+
+/* 3. ปุ่ม Register (ทรงเม็ดยา - Pill shape) */
+.btn-register-pill {
+    background-color: #046571; /* ดึงสีเขียวอมน้ำเงินโทนเดียวกับภาพตัวอย่าง */
+    border: none;
+    color: var(--white);
+    padding: 0.65rem 1.8rem;
+    border-radius: 30px; /* ขอบมนเท่ากันสองฝั่งเป็นทรงเม็ดยา */
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-register-pill:hover {
+    background-color: var(--dark-teal); /* ใช้ตัวแปรสีเขียวเข้มเดิมของคุณเมื่อ hover */
+}

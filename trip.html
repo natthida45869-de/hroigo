@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andaman Trails - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navigation Bar (สำหรับผู้ใช้ที่ยังไม่ล็อกอิน) -->
+  <nav class="navbar">
+    <div class="logo">HroiGo</div>
+
+    <!-- เมนูตรงกลาง (ถ้ามี) -->
+    <ul class="nav-links">
+      <li><a href="#">Digital Passport</a></li>
+      <li><a href="#">Travel Guide</a></li>
+    </ul>
+
+    <!-- ส่วนขวาบน Navbar ที่ต้องเปลี่ยนมาใช้ชุดนี้ -->
+    <div class="nav-auth-actions">
+      <!-- ช่องค้นหาโค้งมน -->
+      <div class="search-container">
+        <span class="search-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input type="text" placeholder="Search experiences...">
+      </div>
+
+      <!-- ปุ่ม Login แบบข้อความ -->
+      <button class="btn-login-text">Login</button>
+
+      <!-- ปุ่ม Register ทรงเม็ดยา -->
+      <button class="btn-register-pill">Register</button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Welcome Banner Section -->
+    <!-- Welcome Banner สไตล์ Hero Image (แบบรูปที่ 2) -->
+    <div class="welcome-banner">
+      <div class="banner-content">
+        <!-- ใช้ <br> เพื่อตัดบรรทัดหัวข้อให้สวยงามตามดีไซน์ -->
+        <h1>Welcome to <br>Your Southern Travel Log!</h1>
+        <p>Your Southern passport is a blank slate. Drop your pins, track your journeys, and visualize your personal
+          travel map instantly.</p>
+      </div>
+
+      <!-- จุดสไลด์แสดงสถานะหน้า (Carousel Dots) ที่มุมขวาล่าง -->
+      <div class="carousel-dots">
+        <span class="dot-item active"></span>
+        <span class="dot-item"></span>
+        <span class="dot-item"></span>
+        <span class="dot-item"></span>
+      </div>
+    </div>
+
+    <!-- Dynamic Grid Workspace -->
+    <div class="dashboard-grid">
+
+      <!-- Left Column: Interactive Map -->
+      <div class="card map-card">
+        <div class="card-header">
+          <h2>🗺️ Southern Thailand Map</h2>
+          <div class="map-legend">
+            <span class="legend-item"><span class="dot visited"></span> Visited</span>
+            <span class="legend-item"><span class="dot remaining"></span> Remaining</span>
+          </div>
+        </div>
+        <div class="map-wrapper">
+
+          <!-- 📍 พิกัดปักหมุดที่คำนวณตามตำแหน่งรูปภาพใหม่ของคุณเป๊ะๆ -->
+
+          <div class="map-pin visited" style="top: 19%; left: 61%;">
+            <span class="pin-dot"></span><span class="pin-name">Chumphon</span>
+          </div>
+
+          <div class="map-pin remaining" style="top: 27%; left: 46%;">
+            <span class="pin-dot"></span><span class="pin-name">Ranong</span>
+          </div>
+
+          <div class="map-pin remaining" style="top: 40%; left: 28%;">
+            <span class="pin-dot"></span><span class="pin-name">Phang Nga</span>
+          </div>
+
+          <div class="map-pin visited" style="top: 39%; left: 51%;">
+            <span class="pin-dot"></span><span class="pin-name">Surat Thani</span>
+          </div>
+
+          <div class="map-pin visited" style="top: 49%; left: 18%;">
+            <span class="pin-dot"></span><span class="pin-name">Phuket</span>
+          </div>
+
+          <div class="map-pin visited" style="top: 51%; left: 37%;">
+            <span class="pin-dot"></span><span class="pin-name">Krabi</span>
+          </div>
+
+          <div class="map-pin remaining pin-east" style="top: 51%; left: 56%;">
+            <span class="pin-dot"></span><span class="pin-name">Nakhon Si</span>
+          </div>
+
+          <div class="map-pin remaining" style="top: 62%; left: 43%;">
+            <span class="pin-dot"></span><span class="pin-name">Trang</span>
+          </div>
+
+          <div class="map-pin remaining pin-east" style="top: 63%; left: 54%;">
+            <span class="pin-dot"></span><span class="pin-name">Phatthalung</span>
+          </div>
+
+          <div class="map-pin remaining" style="top: 73%; left: 46%;">
+            <span class="pin-dot"></span><span class="pin-name">Satun</span>
+          </div>
+
+          <div class="map-pin visited pin-east" style="top: 74%; left: 59%;">
+            <span class="pin-dot"></span><span class="pin-name">Songkhla</span>
+          </div>
+
+          <div class="map-pin remaining pin-east" style="top: 78%; left: 75%;">
+            <span class="pin-dot"></span><span class="pin-name">Pattani</span>
+          </div>
+
+          <div class="map-pin remaining pin-east" style="top: 82%; left: 66%;">
+            <span class="pin-dot"></span><span class="pin-name">Yala</span>
+          </div>
+
+          <div class="map-pin remaining pin-east" style="top: 86%; left: 78%;">
+            <span class="pin-dot"></span><span class="pin-name">Narathiwat</span>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Quick Stats & Actions -->
+        <div class="sidebar-column">
+
+          <!-- Rank Status Card -->
+          <div class="card rank-card">
+            <div class="rank-header">
+              <span class="badge-icon">🏆</span>
+              <div>
+                <span class="label">RANK STATUS</span>
+                <h3>นักท่องเที่ยวสายลุยใต้</h3>
+              </div>
+            </div>
+            <div class="rank-stats">
+              <div class="stat-box">
+                <span class="stat-num">5</span>
+                <span class="stat-label">Provinces</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num">24</span>
+                <span class="stat-label">Check-ins</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- GPS Check-In Action Card -->
+          <div class="card checkin-card">
+            <div class="checkin-header">
+              <div>
+                <h3>Explore Locally</h3>
+                <p>You are currently in <strong>Phang Nga</strong></p>
+              </div>
+              <span class="gps-badge">🛰️ GPS Active</span>
+            </div>
+            <button class="btn btn-teal btn-block" id="checkin-btn">📍 Check-in Now</button>
+            <p class="checkin-note">Collect stamps and unlock premium trail guides</p>
+          </div>
+
+          <!-- Coastal Travel Guide Promo -->
+          <div class="card promo-card">
+            <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=150&q=80"
+              alt="Phuket">
+            <div class="promo-text">
+              <h4>Hidden Gems in Phuket</h4>
+              <p>3 new locations added today.</p>
+            </div>
+            <span class="arrow">→</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Recent Activity Section -->
+      <section class="recent-activity">
+        <div class="section-header">
+          <h2>Recent Activity</h2>
+          <a href="#" class="view-all">View All Activities</a>
+        </div>
+        <div class="activity-grid">
+          <!-- Activity Card 1 -->
+          <div class="activity-card">
+            <div class="activity-img"
+              style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80');">
+              <span class="stamp-badge">🎟️ Stamp</span>
+            </div>
+            <div class="activity-info">
+              <h4>Maya Bay Point</h4>
+              <p>Krabi • 2 hours ago</p>
+            </div>
+          </div>
+          <!-- Activity Card 2 -->
+          <div class="activity-card">
+            <div class="activity-img"
+              style="background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=500&q=80');">
+              <span class="stamp-badge">🎟️ Stamp</span>
+            </div>
+            <div class="activity-info">
+              <h4>Old Town Heritage</h4>
+              <p>Phuket • Yesterday</p>
+            </div>
+          </div>
+          <!-- Activity Card 3 -->
+          <div class="activity-card">
+            <div class="activity-img"
+              style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=500&q=80');">
+              <span class="stamp-badge">🎟️ Stamp</span>
+            </div>
+            <div class="activity-info">
+              <h4>Samed Nangshe View</h4>
+              <p>Phang Nga • 2 days ago</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <span class="footer-logo">Andaman Trails</span>
+      <div class="footer-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact Support</a>
+        <a href="#">About Us</a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Andaman Trails. Explore the Southern Peninsula.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
