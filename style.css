@@ -302,18 +302,32 @@ body {
    ========================================================================== */
 
 .map-wrapper {
-    /* 🛠️ ดึงรูปภาพที่คุณเซฟไว้มาใช้เป็นพื้นหลัง */
-    background-image: url('image/แผนที่.png'); 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
     position: relative;
-    
-    /* บีบความกว้างและล็อกความสูงให้แมตช์กับสัดส่วนของรูปภาพต้นฉบับ */
     width: 100%;
     max-width: 500px; 
     height: 620px;    
     margin: 0 auto; /* จัดแผนที่ให้อยู่ตรงกลางการ์ดสีขาว */
+}
+
+/* ==========================================================================
+   Custom SVG Vector Map Styles
+   ========================================================================== */
+.custom-southern-map {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.province-path {
+    fill: #f8fafc;
+    stroke: #cbd5e1;
+    stroke-width: 1.2px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.province-path:hover {
+    fill: #e2e8f0;
+    stroke: #94a3b8;
 }
 
 /* ตัวคุมพินจังหวัด (จุดอยู่ซ้าย ข้อความอยู่ขวา) */
@@ -322,7 +336,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    transform: translate(-50%, -50%);
+    transform: translate(-12px, -12px); /* Centered around pin-dot left edge */
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 5;
 }
@@ -330,10 +344,16 @@ body {
 /* พลิกให้กล่องข้อความอยู่ทางซ้าย สำหรับจังหวัดฝั่งตะวันออกเพื่อไม่ให้หลุดขอบรูป */
 .map-pin.pin-east {
     flex-direction: row-reverse;
+    transform: translate(calc(-100% + 12px), -12px); /* Centered around pin-dot right edge */
 }
 
 .map-pin:hover {
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: translate(-12px, -12px) scale(1.08);
+    z-index: 10;
+}
+
+.map-pin.pin-east:hover {
+    transform: translate(calc(-100% + 12px), -12px) scale(1.08);
     z-index: 10;
 }
 
