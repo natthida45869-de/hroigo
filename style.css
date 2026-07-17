@@ -286,8 +286,8 @@ body {
 }
 
 .dot {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     border-radius: 50% 50% 50% 0;
     display: inline-block;
     transform: rotate(-45deg);
@@ -321,7 +321,7 @@ body {
     position: absolute;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     transform: translate(-50%, -50%);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 5;
@@ -339,8 +339,8 @@ body {
 
 /* จุดศูนย์กลางพิน (Dot Indicator - เปลี่ยนเป็นรูปหมุด) */
 .pin-dot {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
     border-radius: 50% 50% 50% 0;
     display: inline-block;
     flex-shrink: 0;
@@ -350,8 +350,8 @@ body {
 
 .pin-dot::after {
     content: "";
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: var(--white);
     border-radius: 50%;
     position: absolute;
@@ -363,9 +363,9 @@ body {
 /* กล่องข้อความชื่อจังหวัด */
 .pin-name {
     background-color: var(--white);
-    padding: 0.35rem 0.65rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-dark);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
