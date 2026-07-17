@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let currentScale = 1.0;
         const scaleStep = 0.15;
-        const minScale = 0.4;  // Max zoom in
+        const minScale = 0.15;  // Max zoom in (allows further zoom in)
         const maxScale = 1.5;  // Max zoom out
 
         // Current viewBox state (updates on zoom and pan)
