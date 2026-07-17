@@ -794,13 +794,94 @@ footer {
     color: var(--white);
 }
 
-/* Hide Pins Smooth Transition */
-.custom-southern-map.pins-hidden .map-pin {
+/* Container for the pin toggle to position the dropdown relative to the button */
+.pin-toggle-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Menu for Filtering Pins */
+.pin-filter-menu {
+    position: absolute;
+    bottom: 0;
+    right: 48px; /* place it to the left of the map-controls buttons */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    z-index: 20;
+    width: 130px;
+    opacity: 0;
+    transform: scale(0.9) translateX(10px);
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+/* Open state for the dropdown */
+.pin-filter-menu.open {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    pointer-events: auto;
+}
+
+/* Item inside filter menu */
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    user-select: none;
+}
+
+.filter-item input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: var(--primary-teal);
+    width: 14px;
+    height: 14px;
+    margin: 0;
+}
+
+/* Dots inside the filter menu */
+.filter-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.filter-dot.visited {
+    background-color: #e53e3e;
+}
+.filter-dot.remaining {
+    background-color: #fca5a5;
+}
+
+.filter-label {
+    flex-grow: 1;
+}
+
+/* Hide Visited/Remaining Smooth Transitions */
+.custom-southern-map.hide-visited .map-pin.visited {
     opacity: 0;
     pointer-events: none;
     transform: translate(-12px, -12px) scale(0);
 }
+.custom-southern-map.hide-visited .map-pin.visited.pin-east {
+    transform: translate(calc(-100% + 12px), -12px) scale(0);
+}
 
-.custom-southern-map.pins-hidden .map-pin.pin-east {
+.custom-southern-map.hide-remaining .map-pin.remaining {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-12px, -12px) scale(0);
+}
+.custom-southern-map.hide-remaining .map-pin.remaining.pin-east {
     transform: translate(calc(-100% + 12px), -12px) scale(0);
 }

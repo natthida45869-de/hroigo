@@ -173,7 +173,23 @@
             <button id="zoom-in" class="zoom-btn" title="Zoom In">+</button>
             <button id="zoom-out" class="zoom-btn" title="Zoom Out">-</button>
             <button id="zoom-reset" class="zoom-btn" title="Reset Zoom">⟲</button>
-            <button id="toggle-pins" class="zoom-btn active" title="Hide/Show Pins">📍</button>
+            
+            <!-- Pin Layer Filters (Visited / Remaining) -->
+            <div class="pin-toggle-container">
+              <button id="toggle-pins" class="zoom-btn active" title="Filter Pins">📍</button>
+              <div id="pin-filter-menu" class="pin-filter-menu">
+                <label class="filter-item">
+                  <input type="checkbox" id="filter-visited" checked>
+                  <span class="filter-dot visited"></span>
+                  <span class="filter-label">Visited</span>
+                </label>
+                <label class="filter-item">
+                  <input type="checkbox" id="filter-remaining" checked>
+                  <span class="filter-dot remaining"></span>
+                  <span class="filter-label">Remaining</span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>

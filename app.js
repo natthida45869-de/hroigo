@@ -282,11 +282,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- Toggle Pins Logic ---
         const togglePinsBtn = document.getElementById('toggle-pins');
-        if (togglePinsBtn) {
-            togglePinsBtn.addEventListener('click', () => {
-                svgMap.classList.toggle('pins-hidden');
-                togglePinsBtn.classList.toggle('active');
+        const pinFilterMenu = document.getElementById('pin-filter-menu');
+        const filterVisited = document.getElementById('filter-visited');
+        const filterRemaining = document.getElementById('filter-remaining');
+
+        if (togglePinsBtn && pinFilterMenu && filterVisited && filterRemaining) {
+            // Toggle dropdown open/close
+            togglePinsBtn.addEventListener('click', (e) => {
+                pinFilterMenu.classList.toggle('open');
+                e.stopPropagation(); // prevent window click from closing it immediately
             });
+
+            // Close dropdown when clicking anywhere else
+            window.addEventListener('click', (e) => {
+                if (!pinFilterMenu.contains(e.target) && e.target !== togglePinsBtn) {
+                    pinFilterMenu.classList.remove('open');
+                }
+            });
+
+            // Handle Visited filter
+            filterVisited.addEventListener('change', () => {
+                if (filterVisited.checked) {
+                    svgMap.classList.remove('hide-visited');
+                } else {
+                    svgMap.classList.add('hide-visited');
+                }
+                updateToggleButtonState();
+            });
+
+            // Handle Remaining filter
+            filterRemaining.addEventListener('change', () => {
+                if (filterRemaining.checked) {
+                    svgMap.classList.remove('hide-remaining');
+                } else {
+                    svgMap.classList.add('hide-remaining');
+                }
+                updateToggleButtonState();
+            });
+
+            // Update main toggle button active state based on filters
+            function updateToggleButtonState() {
+                if (filterVisited.checked || filterRemaining.checked) {
+                    togglePinsBtn.classList.add('active');
+                } else {
+                    togglePinsBtn.classList.remove('active');
+                }
+            }
         }
 
         // --- Pan / Drag Logic ---
