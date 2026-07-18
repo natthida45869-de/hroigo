@@ -308,23 +308,35 @@
       margin-top: 0.1rem;
     }
 
-    /* Passport Action Buttons */
-    .passport-actions {
+    /* Passport Header Layout */
+    .passport-header-group {
       display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+      gap: 2rem;
+    }
+
+    .passport-intro {
+      margin-bottom: 0;
+      flex: 1;
+    }
+
+    .passport-actions-top {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-shrink: 0;
     }
 
     .btn-passport {
-      padding: 0.75rem 2rem;
-      font-size: 0.95rem;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
       font-weight: 700;
       border-radius: 30px;
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
       transition: all 0.2s ease;
       cursor: pointer;
       font-family: inherit;
@@ -361,6 +373,17 @@
 
     /* Responsiveness */
     @media (max-width: 768px) {
+      .passport-header-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .passport-actions-top {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
       .passport-book {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -421,9 +444,31 @@
       Back to Dashboard
     </a>
 
-    <div class="passport-intro">
-      <h2>Your Andaman Passport</h2>
-      <p>This is your official digital travel record for Southern Thailand. Explore new provinces, check-in, and collect unique visa stamps to unlock new ranks and rewards.</p>
+    <div class="passport-header-group">
+      <div class="passport-intro">
+        <h2>Your Andaman Passport</h2>
+        <p>This is your official digital travel record for Southern Thailand. Explore new provinces, check-in, and collect unique visa stamps to unlock new ranks and rewards.</p>
+      </div>
+      <div class="passport-actions-top">
+        <button class="btn-passport btn-share" id="share-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          Share Journey
+        </button>
+        <button class="btn-passport btn-download" id="download-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download Passport
+        </button>
+      </div>
     </div>
 
     <!-- Passport Layout -->
@@ -543,28 +588,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Passport Actions -->
-    <div class="passport-actions">
-      <button class="btn-passport btn-share" id="share-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="18" cy="5" r="3"></circle>
-          <circle cx="6" cy="12" r="3"></circle>
-          <circle cx="18" cy="19" r="3"></circle>
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-        </svg>
-        Share Journey
-      </button>
-      <button class="btn-passport btn-download" id="download-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
-        </svg>
-        Download Passport
-      </button>
     </div>
   </main>
 
