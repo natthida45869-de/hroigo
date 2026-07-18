@@ -303,8 +303,8 @@ body {
     flex-shrink: 0;
 }
 
-.dot.visited { background-color: #e53e3e; }
-.dot.remaining { background-color: #fca5a5; }
+.dot.visited { background-color: var(--success-green); }
+.dot.remaining { background-color: #a7f3d0; }
 
 /* ==========================================================================
    Interactive Southern Thailand Map (เวอร์ชันใช้รูปภาพจริงของคุณ)
@@ -490,29 +490,29 @@ body {
 
 /* 🟢 สถานะ: Visited (ไปแล้ว) */
 .map-pin.visited .pin-dot {
-    background-color: #e53e3e;
-    box-shadow: -1px 2px 4px rgba(229, 62, 62, 0.4);
+    background-color: var(--success-green);
+    box-shadow: -1px 2px 4px rgba(56, 161, 105, 0.4);
 }
 .map-pin.visited .pin-name {
-    border-left: 3px solid #e53e3e;
+    border-left: 3px solid var(--success-green);
 }
 .map-pin.visited.pin-east .pin-name {
     border-left: none;
-    border-right: 3px solid #e53e3e;
+    border-right: 3px solid var(--success-green);
 }
 
 /* ⚪ สถานะ: Remaining (ยังไม่ไป) */
 .map-pin.remaining .pin-dot {
-    background-color: #fca5a5;
-    box-shadow: -1px 2px 4px rgba(252, 165, 165, 0.4);
+    background-color: #a7f3d0;
+    box-shadow: -1px 2px 4px rgba(167, 243, 208, 0.4);
 }
 .map-pin.remaining .pin-name {
-    border-left: 3px solid #fca5a5;
+    border-left: 3px solid #a7f3d0;
     opacity: 0.95;
 }
 .map-pin.remaining.pin-east .pin-name {
     border-left: none;
-    border-right: 3px solid #fca5a5;
+    border-right: 3px solid #a7f3d0;
 }
 
 /* Sidebar Columns */
@@ -933,10 +933,10 @@ footer {
     border-radius: 50%;
 }
 .filter-dot.visited {
-    background-color: #e53e3e;
+    background-color: var(--success-green);
 }
 .filter-dot.remaining {
-    background-color: #fca5a5;
+    background-color: #a7f3d0;
 }
 
 .filter-label {
