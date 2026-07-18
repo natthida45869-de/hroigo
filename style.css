@@ -585,6 +585,11 @@ body {
     font-weight: bold;
 }
 
+.gps-badge.locked {
+    background-color: #edf2f7;
+    color: var(--text-gray);
+}
+
 .checkin-note {
     font-size: 0.75rem;
     color: var(--text-gray);
