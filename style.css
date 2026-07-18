@@ -475,6 +475,19 @@ body {
     transform-origin: left center;
 }
 
+/* ย้ายเฉพาะป้ายชื่อสตูลลงด้านล่าง เพื่อไม่ให้ทับซ้อนกับองค์ประกอบอื่น */
+.map-pin.satun-pin .pin-name {
+    transform: translateY(25px); /* ขยับลงล่าง 25px */
+}
+
+/* ปรับทิศทางและมุมของเส้นโยงสตูลให้เฉียงทแยงขึ้นหาตัวหมุด */
+.map-pin.satun-pin .pin-name::before {
+    width: 39px; /* ปรับความยาวของเส้นเชื่อม */
+    right: -37px;
+    transform: rotate(-29.6deg); /* หมุนเอียงทำมุมทแยงขึ้นไปหาตัวหมุด */
+    transform-origin: left center;
+}
+
 /* 🟢 สถานะ: Visited (ไปแล้ว) */
 .map-pin.visited .pin-dot {
     background-color: #e53e3e;
