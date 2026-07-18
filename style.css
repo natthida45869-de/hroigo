@@ -627,6 +627,34 @@ body {
     color: var(--text-gray);
 }
 
+#checkin-btn {
+    background-color: var(--success-green); /* สีเขียวเดียวกับหมุดแผนที่ */
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(56, 161, 105, 0.2);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#checkin-btn:hover {
+    background-color: #2f855a; /* สีเขียวเข้มขึ้นเมื่อชี้ */
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(56, 161, 105, 0.3);
+}
+
+#checkin-btn:active {
+    transform: translateY(1px);
+}
+
 .checkin-note {
     font-size: 0.75rem;
     color: var(--text-gray);
