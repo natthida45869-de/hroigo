@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Guide - Andaman Trails</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom Styles for Travel Guide Page */
+    .guide-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .guide-header-section {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .guide-header-section h1 {
+      font-size: 2.2rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .guide-header-section p {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+    }
+
+    /* Category Filter Tags */
+    .filter-tags {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag-btn {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      color: var(--text-gray);
+      padding: 0.5rem 1.25rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tag-btn:hover, .tag-btn.active {
+      background: #046571;
+      color: var(--white);
+      border-color: #046571;
+      box-shadow: 0 4px 10px rgba(4, 101, 113, 0.15);
+    }
+
+    /* Guides Grid */
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .guide-card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .guide-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .guide-card-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .guide-category {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      color: #046571;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .guide-card-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .guide-province {
+      font-size: 0.8rem;
+      color: #046571;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .guide-card-content h3 {
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .guide-card-content p {
+      color: var(--text-gray);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .guide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+      margin-top: auto;
+    }
+
+    .guide-meta-info {
+      font-size: 0.8rem;
+      color: var(--text-gray);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .read-more-btn {
+      color: #046571;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: transform 0.2s ease;
+    }
+
+    .read-more-btn:hover {
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">HroiGo</div>
+
+    <ul class="nav-links">
+      <li><a href="trip.html">Home</a></li>
+      <li><a href="passport.html">Digital Passport</a></li>
+      <li><a href="guide.html" class="active">Travel Guide</a></li>
+    </ul>
+
+    <div class="nav-auth-actions">
+      <div class="search-container">
+        <span class="search-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input type="text" placeholder="Search experiences...">
+      </div>
+
+      <button class="btn-login-text">Register</button>
+      <button class="btn-register-pill">Login</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="guide-container">
+    <div class="guide-header-section">
+      <h1>Southern Thailand Travel Guide</h1>
+      <p>Discover the best destinations, culinary heritage, and natural wonders of the South.</p>
+    </div>
+
+    <!-- Filter Tags -->
+    <div class="filter-tags">
+      <button class="tag-btn active">All Guides</button>
+      <button class="tag-btn">Beaches & Islands</button>
+      <button class="tag-btn">Culture & Heritage</button>
+      <button class="tag-btn">Nature Trails</button>
+      <button class="tag-btn">Local Culinary</button>
+    </div>
+
+    <!-- Guides Grid -->
+    <div class="guides-grid">
+      <!-- Guide Card 1 -->
+      <div class="guide-card">
+        <div class="guide-card-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80');">
+          <span class="guide-category">Beaches & Islands</span>
+        </div>
+        <div class="guide-card-content">
+          <span class="guide-province">Krabi</span>
+          <h3>Maya Bay: The Island Paradise Reopened</h3>
+          <p>Explore the pristine limestone bays, vibrant marine reefs, and white sandy beaches of Maya Bay with our updated sustainable travel guide.</p>
+          <div class="guide-footer">
+            <span class="guide-meta-info">⏱️ 1 Day Trip</span>
+            <a href="#" class="read-more-btn">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide Card 2 -->
+      <div class="guide-card">
+        <div class="guide-card-img" style="background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80');">
+          <span class="guide-category">Culture & Heritage</span>
+        </div>
+        <div class="guide-card-content">
+          <span class="guide-province">Phuket</span>
+          <h3>Phuket Old Town Heritage Walk</h3>
+          <p>Stroll through historical streets adorned with Sino-Portuguese architecture, local museums, artsy cafes, and traditional Southern heritage spots.</p>
+          <div class="guide-footer">
+            <span class="guide-meta-info">⏱️ Half Day</span>
+            <a href="#" class="read-more-btn">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide Card 3 -->
+      <div class="guide-card">
+        <div class="guide-card-img" style="background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&q=80');">
+          <span class="guide-category">Nature Trails</span>
+        </div>
+        <div class="guide-card-content">
+          <span class="guide-province">Phang Nga</span>
+          <h3>Samed Nangshe Sunrise Viewpoint</h3>
+          <p>Experience the most breathtaking sunrise viewpoint overlooking the Phang Nga Bay archipelago with panoramic limestone karst vistas.</p>
+          <div class="guide-footer">
+            <span class="guide-meta-info">⏱️ 2 Days / 1 Night</span>
+            <a href="#" class="read-more-btn">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide Card 4 -->
+      <div class="guide-card">
+        <div class="guide-card-img" style="background-image: url('https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=600&q=80');">
+          <span class="guide-category">Nature Trails</span>
+        </div>
+        <div class="guide-card-content">
+          <span class="guide-province">Satun</span>
+          <h3>Satun Geopark UNESCO World Heritage</h3>
+          <p>Journey into prehistoric caves, ancient fossil layers, and hidden lagoons in Thailand's first UNESCO Global Geopark.</p>
+          <div class="guide-footer">
+            <span class="guide-meta-info">⏱️ 3 Days / 2 Nights</span>
+            <a href="#" class="read-more-btn">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide Card 5 -->
+      <div class="guide-card">
+        <div class="guide-card-img" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80');">
+          <span class="guide-category">Local Culinary</span>
+        </div>
+        <div class="guide-card-content">
+          <span class="guide-province">Trang</span>
+          <h3>Trang Food Capital & Roast Pork Tour</h3>
+          <p>Embark on a culinary quest in Trang, famous for its unique morning dim sum culture, legendary crispy roast pork, and sweet local cakes.</p>
+          <div class="guide-footer">
+            <span class="guide-meta-info">⏱️ 2 Days Trip</span>
+            <a href="#" class="read-more-btn">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide Card 6 -->
+      <div class="guide-card">
+        <div class="guide-card-img" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=600&q=80');">
+          <span class="guide-category">Culture & Heritage</span>
+        </div>
+        <div class="guide-card-content">
+          <span class="guide-province">Nakhon Si Thammarat</span>
+          <h3>Wat Phra Mahathat & Shadow Puppetry</h3>
+          <p>Delve into the spiritual heart of the South at Wat Phra Mahathat and explore the dying art of Nang Talung shadow puppet carving.</p>
+          <div class="guide-footer">
+            <span class="guide-meta-info">⏱️ 1 Day Trip</span>
+            <a href="#" class="read-more-btn">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <span class="footer-logo">Andaman Trails</span>
+      <div class="footer-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact Support</a>
+        <a href="#">About Us</a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Andaman Trails. Explore the Southern Peninsula.</p>
+  </footer>
+</body>
+
+</html>
