@@ -262,6 +262,7 @@ body {
 
 /* Map Card */
 .map-card {
+    background-color: #f3f4f6; /* สีเทาอ่อน */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -601,6 +602,10 @@ body {
 }
 
 /* GPS Check-in Card */
+.checkin-card {
+    background-color: #f3f4f6; /* สีเทาอ่อน */
+}
+
 .checkin-header {
     display: flex;
     justify-content: space-between;
