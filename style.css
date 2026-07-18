@@ -438,14 +438,14 @@ body {
 
 /* ย้ายเฉพาะป้ายชื่อกระบี่ลงด้านล่างและเยื้องซ้ายออกไปในทะเลลึก เพื่อไม่ให้ทับกับหมุดพังงาและตรัง */
 .map-pin.krabi-pin .pin-name {
-    transform: translateY(20px) translateX(-28px); /* ขยับลงล่าง 20px และเยื้องซ้ายออกทะเล 28px */
+    transform: translateY(35px) translateX(-28px); /* ขยับลงล่าง 35px และเยื้องซ้ายออกทะเล 28px */
 }
 
 /* ปรับทิศทางและมุมของเส้นโยงกระบี่ให้เฉียงทแยงขึ้นยาวหาตัวหมุด */
 .map-pin.krabi-pin .pin-name::before {
-    width: 58px; /* ปรับยืดเส้นเชื่อมยาวขึ้นเป็นพิเศษ */
-    right: -56px;
-    transform: rotate(-18.4deg); /* หมุนเอียงทำมุมทแยงขึ้นไปหาตัวหมุด */
+    width: 70px; /* ปรับยืดเส้นเชื่อมยาวขึ้นเป็นพิเศษ */
+    right: -68px;
+    transform: rotate(-25.3deg); /* หมุนเอียงทำมุมทแยงขึ้นไปหาตัวหมุด */
     transform-origin: left center;
 }
 
