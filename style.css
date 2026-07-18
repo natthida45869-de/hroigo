@@ -628,7 +628,7 @@ body {
 }
 
 #checkin-btn {
-    background-color: var(--success-green); /* สีเขียวเดียวกับหมุดแผนที่ */
+    background-color: #046571; /* ดึงสีเขียวอมน้ำเงินโทนเดียวกับปุ่ม Register */
     color: var(--white);
     border: none;
     border-radius: 8px;
@@ -637,7 +637,7 @@ body {
     font-weight: 700;
     width: 100%;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(56, 161, 105, 0.2);
+    box-shadow: 0 4px 12px rgba(4, 101, 113, 0.2);
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
@@ -646,9 +646,9 @@ body {
 }
 
 #checkin-btn:hover {
-    background-color: #2f855a; /* สีเขียวเข้มขึ้นเมื่อชี้ */
+    background-color: var(--dark-teal); /* ใช้สีเขียวเข้มหัวเป็ดเมื่อ hover */
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(56, 161, 105, 0.3);
+    box-shadow: 0 6px 16px rgba(4, 101, 113, 0.3);
 }
 
 #checkin-btn:active {
