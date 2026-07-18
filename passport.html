@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Passport - Andaman Trails</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom Styles for Passport Page */
+    .passport-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-teal);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-4px);
+    }
+
+    /* Passport Book Layout */
+    .passport-book {
+      background: #f7f9f9;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 550px;
+      position: relative;
+    }
+
+    /* Divider Line (Book Spine) */
+    .passport-book::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(226,232,240,0) 0%, rgba(226,232,240,1) 15%, rgba(226,232,240,1) 85%, rgba(226,232,240,0) 100%);
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .passport-page {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .passport-left {
+      background: var(--white);
+      border-right: 1px solid rgba(226, 232, 240, 0.5);
+    }
+
+    .passport-right {
+      background: #fafbfc;
+      border-left: 1px solid rgba(226, 232, 240, 0.5);
+    }
+
+    /* Left Page Styles */
+    .passport-title {
+      font-size: 1.1rem;
+      color: var(--primary-teal);
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      text-align: center;
+      border-bottom: 2px double var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .profile-card {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .profile-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #046571, #4fd1c5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 2.5rem;
+      font-weight: bold;
+      border: 4px solid var(--white);
+      box-shadow: 0 4px 15px rgba(4, 101, 113, 0.2);
+    }
+
+    .profile-meta {
+      flex: 1;
+    }
+
+    .profile-meta h2 {
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .profile-meta p {
+      color: var(--text-gray);
+      font-size: 0.9rem;
+    }
+
+    .passport-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: var(--light-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .detail-label {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .detail-value {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .passport-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .pass-stat-box {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .pass-stat-num {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #046571;
+      margin-bottom: 0.25rem;
+    }
+
+    .pass-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-gray);
+    }
+
+    /* Right Page Styles */
+    .stamps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .stamp-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .stamp-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      border: 3px dashed var(--border-color);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+
+    .stamp-circle:hover {
+      transform: scale(1.05);
+    }
+
+    /* Visited Stamp Designs */
+    .stamp-circle.visited {
+      border: 3px double #38a169;
+      background: #f0fff4;
+      box-shadow: 0 4px 15px rgba(56, 161, 101, 0.15);
+    }
+
+    .stamp-circle.visited::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border-radius: 50%;
+      border: 1px solid rgba(56, 161, 101, 0.3);
+      pointer-events: none;
+    }
+
+    .stamp-circle.visited.gold {
+      border-color: #d69e2e;
+      background: #fffaf0;
+      box-shadow: 0 4px 15px rgba(214, 158, 46, 0.15);
+    }
+
+    .stamp-circle.visited.gold::after {
+      border-color: rgba(214, 158, 46, 0.3);
+    }
+
+    /* Locked Stamp Styles */
+    .stamp-circle.locked {
+      background: #f8fafc;
+      border-color: var(--border-color);
+      color: #cbd5e0;
+      cursor: not-allowed;
+    }
+
+    .stamp-circle.locked svg {
+      width: 24px;
+      height: 24px;
+      fill: #a0aec0;
+    }
+
+    .stamp-text {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #38a169;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .stamp-text.gold {
+      color: #d69e2e;
+    }
+
+    .stamp-name {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .stamp-date {
+      font-size: 0.7rem;
+      color: var(--text-gray);
+      margin-top: 0.1rem;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      .passport-book {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .passport-book::before {
+        display: none;
+      }
+
+      .passport-left {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .passport-page {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">HroiGo</div>
+
+    <ul class="nav-links">
+      <li><a href="passport.html" class="active">Digital Passport</a></li>
+      <li><a href="trip.html">Travel Guide</a></li>
+    </ul>
+
+    <div class="nav-auth-actions">
+      <div class="search-container">
+        <span class="search-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input type="text" placeholder="Search experiences...">
+      </div>
+
+      <button class="btn-login-text">Register</button>
+      <button class="btn-register-pill">Login</button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="passport-container">
+    <a href="trip.html" class="back-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Dashboard
+    </a>
+
+    <!-- Passport Layout -->
+    <div class="passport-book">
+      <!-- Left Page: Owner Data -->
+      <div class="passport-page passport-left">
+        <h3 class="passport-title">Digital Passport</h3>
+        
+        <div class="profile-card">
+          <div class="profile-avatar">GE</div>
+          <div class="profile-meta">
+            <h2>Guest Explorer</h2>
+            <p>Southern Trails Adventurer</p>
+          </div>
+        </div>
+
+        <div class="passport-details">
+          <div class="detail-row">
+            <span class="detail-label">Passport No.</span>
+            <span class="detail-value">AT-2026-9999</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Nationality</span>
+            <span class="detail-value">THAILAND</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Date of Issue</span>
+            <span class="detail-value">18 JUL 2026</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Rank Status</span>
+            <span class="detail-value">GUEST</span>
+          </div>
+        </div>
+
+        <div class="passport-stats">
+          <div class="pass-stat-box">
+            <span class="pass-stat-num">2</span>
+            <span class="pass-stat-label">Visited Provinces</span>
+          </div>
+          <div class="pass-stat-box">
+            <span class="pass-stat-num">2 / 6</span>
+            <span class="pass-stat-label">Stamps Collected</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Page: Stamps Grid -->
+      <div class="passport-page passport-right">
+        <h3 class="passport-title">Visa Stamps</h3>
+        
+        <div class="stamps-grid">
+          <!-- Stamp 1: Maya Bay (Visited) -->
+          <div class="stamp-container">
+            <div class="stamp-circle visited">
+              <span class="stamp-text">Maya Bay<br>Krabi</span>
+            </div>
+            <span class="stamp-name">Maya Bay Point</span>
+            <span class="stamp-date">18 Jul 2026</span>
+          </div>
+
+          <!-- Stamp 2: Phuket Old Town (Visited) -->
+          <div class="stamp-container">
+            <div class="stamp-circle visited gold">
+              <span class="stamp-text gold">Old Town<br>Phuket</span>
+            </div>
+            <span class="stamp-name">Old Town Heritage</span>
+            <span class="stamp-date">17 Jul 2026</span>
+          </div>
+
+          <!-- Stamp 3: Samed Nangshe (Locked) -->
+          <div class="stamp-container">
+            <div class="stamp-circle locked">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <span class="stamp-name">Samed Nangshe</span>
+            <span class="stamp-date">Locked</span>
+          </div>
+
+          <!-- Stamp 4: Nakhon Si Thammarat (Locked) -->
+          <div class="stamp-container">
+            <div class="stamp-circle locked">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <span class="stamp-name">Nakhon Si</span>
+            <span class="stamp-date">Locked</span>
+          </div>
+
+          <!-- Stamp 5: Trang (Locked) -->
+          <div class="stamp-container">
+            <div class="stamp-circle locked">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <span class="stamp-name">Trang Beach</span>
+            <span class="stamp-date">Locked</span>
+          </div>
+
+          <!-- Stamp 6: Satun Geopark (Locked) -->
+          <div class="stamp-container">
+            <div class="stamp-circle locked">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <span class="stamp-name">Satun Geopark</span>
+            <span class="stamp-date">Locked</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <span class="footer-logo">Andaman Trails</span>
+      <div class="footer-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact Support</a>
+        <a href="#">About Us</a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Andaman Trails. Explore the Southern Peninsula.</p>
+  </footer>
+</body>
+
+</html>
