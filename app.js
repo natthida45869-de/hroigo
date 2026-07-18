@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkinBtn = document.getElementById('checkin-btn');
     if (checkinBtn) {
         checkinBtn.addEventListener('click', () => {
-            alert('🔒 กรุณาเข้าสู่ระบบก่อนทำการเช็กอินพิกัด GPS ของคุณ!');
+            alert('🎉 ยินดีด้วย! คุณทำการเช็กอินที่ พังงา เรียบร้อยแล้ว ได้รับแสตมป์ใหม่เรียบร้อย!');
         });
     }
 
