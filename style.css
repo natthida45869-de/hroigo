@@ -262,7 +262,7 @@ body {
 
 /* Map Card */
 .map-card {
-    background-color: #f3f4f6; /* สีเทาอ่อน */
+    background: #f3f4f6; /* สีเทาอ่อน */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -525,7 +525,7 @@ body {
 
 /* Rank Card */
 .rank-card {
-    background-color: #f3f4f6; /* สีเทาอ่อน */
+    background: #f3f4f6; /* สีเทาอ่อน */
     color: var(--text-dark);
     border-color: var(--border-color);
     flex: 1;
@@ -607,7 +607,7 @@ body {
 
 /* GPS Check-in Card */
 .checkin-card {
-    background-color: #f3f4f6; /* สีเทาอ่อน */
+    background: #f3f4f6; /* สีเทาอ่อน */
     flex: 1;
     display: flex;
     flex-direction: column;
