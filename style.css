@@ -524,33 +524,35 @@ body {
 
 /* Rank Card */
 .rank-card {
-    background-color: var(--text-dark); /* สีเทาเข้ม */
-    color: var(--white);
-    border-color: #4a5568;
+    background-color: #f3f4f6; /* สีเทาอ่อน */
+    color: var(--text-dark);
+    border-color: var(--border-color);
 }
 
 .rank-card .rank-header h3 {
-    color: var(--white);
+    color: var(--text-dark);
 }
 
 .rank-card .rank-header .label {
-    color: #a0aec0;
+    color: var(--text-gray);
 }
 
 .rank-card .badge-icon {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--white);
+    border: 1px solid var(--border-color);
 }
 
 .rank-card .stat-box {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
 }
 
 .rank-card .stat-box .stat-num {
-    color: #4fd1c5; /* สีเขียวมิ้นต์สว่างโดดเด่นตัดกับพื้นหลังเข้ม */
+    color: var(--primary-teal);
 }
 
 .rank-card .stat-box .stat-label {
-    color: #cbd5e0;
+    color: var(--text-gray);
 }
 
 .rank-header {
