@@ -859,12 +859,14 @@ footer {
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    padding: 0.5rem;
-    transition: color 0.2s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.2s ease;
 }
 
 .btn-login-text:hover {
-    color: var(--primary-teal); /* เปลี่ยนเป็นสีเขียวหัวเป็ดหลักของคุณเมื่อชี้ */
+    color: #046571; /* เปลี่ยนเป็นสีเขียวหัวเป็ดหลักเมื่อชี้ */
+    background-color: rgba(4, 101, 113, 0.08); /* พื้นหลังจางสีเขียวอมน้ำเงิน */
 }
 
 /* 3. ปุ่ม Register (ทรงเม็ดยา - Pill shape) */
